@@ -1,10 +1,17 @@
 <html>
 <head>
-	<title>Dimitri Mendeleïev complete periodic table of the elements</title>
+	<meta charset="UTF-8">
+	<title>Mendeleïev's Table</title>
 	<style>
 		body {
 			margin: 0;
 			background-color: palegoldenrod;
+		}
+		#title {
+			text-align: center;
+			vertical-align: center;
+			font-size: 250%;
+			padding-top: 20;
 		}
 		#grid {
 			display: grid;
@@ -14,6 +21,14 @@
 			grid-template-columns: repeat(18, 1fr);
 			grid-template-rows: repeat(9, 1fr);
 			grid-gap: 10px;
+		}
+		#portrait {
+			background-image: url('https://raw.githubusercontent.com/hauh/piscine-php/master/mendeleiev.jpg');
+			grid-area: 1 / 6 / 4 / 10;
+			background-size: cover;
+			background-position: center;
+			border-style: solid;
+			border-color: black;
 		}
 		.box {
 			display: grid;
@@ -52,15 +67,17 @@
 	</style>
 </head>
 <body>
+	<div id=title>Dimitri Mendeleïev complete periodic table of the elements</div><br /><hr>
 	<div id=grid>
+		<div id=portrait></div>
 		<div class="box elem_other_nonmetals">
 			<div class=weight>1.00794</div>
 			<div class=name>H</div>
 			<div class=number>1</div>
 		</div>
 		<div class="box elem_noble_gases" style="grid-column: 18">
-			<div class=weight>4.002602</div>
-			<div class=name>He</div>
+				<div class=weight>4.002602</div>
+				<div class=name>He</div>
 			<div class=number>2</div>
 		</div>
 		<div class="box elem_alkali_metals">
