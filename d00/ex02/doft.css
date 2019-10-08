@@ -1,18 +1,109 @@
 body {
-	background-color: darkgrey;
-	margin: 0;
+	background-color: rgb(80,80,80);
+	margin-top: 3%;
+	margin-left: 15%;
+	margin-right: 15%;
 }
-#top_block_padding {
-	padding-left: 300px;
-	padding-right: 300px;
-	padding-top: 100px;
+#main_grid {
+	display: grid;
+	width: 100%;
+	justify-content: center;
+	grid-template-columns: 1fr 4fr 1fr;
+	grid-template-rows: repeat(3, minmax(min-content, max-content));
+	grid-gap: 30px;
 }
 #top_block {
-	display: flex;
-	box-sizing: border-box;
-	width: 100%;
-	height: 300px;
-	border-radius: 5%;
-	background-color: grey;
-	box-shadow: 10 0 1px black;
+	display: grid;
+	justify-content: center;
+	grid-template-columns: 1fr 50% 1fr 2%;
+	grid-template-rows: 1fr 1fr;
+	grid-template-areas:
+		"dotf . loupe reload"
+		"dotf . loupe close";
+	padding: 10px;
+	grid-column-start: 1;
+	grid-column-end: 4;
+	position: relative;
+}
+#dotf {
+	grid-area: dotf;
+	max-height: 100px;
+	min-height: 50px;
+}
+#loupe {
+	grid-area: loupe;
+	justify-self: end;
+	align-self: right;
+	position: absolute;
+	max-height: 125px;
+	min-height: 70px;
+}
+#reload {
+	grid-area: reload;
+	justify-self: end;
+	height: 30%;
+}
+#reload {
+	grid-area: reload;
+	justify-self: end;
+	height: 30%;
+}
+#close {
+	grid-area: close;
+	align-self: end;
+	justify-self: end;
+	height: 30%;
+}
+#brick {
+	width: 170%;
+	height: 50px;
+	background-image: url('resources/brick.jpg');
+	background-repeat: repeat;
+}
+#items_block {
+	width: 60px;
+	display: grid;
+	justify-content: center;
+	justify-items: center;
+	align-items: center;
+	grid-template-columns: 50px;
+	grid-template-rows: repeat(5, 1fr);
+	padding-top: 15px;
+	padding-bottom: 15px;
+	padding-right: 25px;
+	padding-left: 25px;
+	grid-row: 2;
+}
+#right_block {
+	display: grid;
+	grid-template-columns: 1;
+	grid-template-rows: 1;
+	margin-right: 20px;
+	grid-column: 3;
+	grid-row: 2;
+}
+#central_block {
+	grid-column: 2;
+	grid-row-start: 2;
+	grid-row-end: 4;
+	padding: 10px;
+}
+.block {
+	border-radius: 0.5em;
+	width: auto;
+	height: auto;
+	background-color: rgb(144,144,144);
+	box-shadow: 7px 7px 7px;
+}
+#green_box {
+	display: block;
+	background: #a4fb96;
+	position: relative;
+	left: -100px;
+	top: -100px;
+    width: 520px;
+    height: 175px;
+    box-shadow: 7px 7px 7px;
+    border-radius: 10px;
+    padding: 10px;
 }

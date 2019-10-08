@@ -4,8 +4,50 @@
 	<link href="doft.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-	<div id=top_block>
-		<div id=top_block_padding></div>
-	</div>
+	<div id=main_grid>
+		<div class=block id=top_block>
+			<img id=dotf src="resources/day_of_the_42.png">
+			<img id=loupe src="resources/loupe.png">
+			<a id=reload href="http://www.disney.com"><img title="Start from the beginning" src="resources/reload.png" style="height: 20px"></a>
+			<a id=close href="http://www.relaischateaux.com"><img src="resources/close.gif" style="height: 20px"></a>
+		</div>
+		<div class=block id=items_block style="grid-column: 1; margin-left: 25px">
+			<img width=50px title="Advance" src="resources/arrow.png">
+			<img width=50px title="Take" src="resources/main.png">
+			<img width=50px title="Look" src="resources/oeil.png" style="border-style: solid; border-color: red; border-radius: 5%">
+			<img width=50px title="Use" src="resources/outil.png">
+			<img width=50px title="Speak" src="resources/chat-icon.png">
+		</div>
+		<div class=block id=central_block>
+        	<img style="width: 1100px" src="resources/cluster.jpg" alt="sofa" usemap="#map">
+       			<p><map name="map">
+            	<area shape="rect" alt="chair"
+                	  coords="345,341 402,469"
+                  	href="https://www.ikea.com/">
+           		 <area shape="rect" alt="monitor"
+               	   coords="662,309 755,368"
+              	    href="https://www.apple.com/">
+        		</map></p>
+		</div>
+		<div class=block id=items_block style="grid-column: 3; margin-right: 25px">
+			<img width=50px src="resources/book.png">
+			<img width=50px src="resources/towel.png">
+			<div id="brick"></div>
+			</div>
+		</div>
+		<div id=green_box>
+			<span style="font-family: Verdana, Geneva, Tahoma, sans-serif; font-size: medium">Vous</span>
+            <span style="font-family: Georgia, ‘Times New Roman’, Times, serif; font-size: xx-large">entrez</span>
+            <span style="font-family: Verdana, Geneva, Tahoma, sans-serif; font-size: medium">alors dans une grande
+                piece remplie</span>
+            <br />
+            <span style="font-family: Verdana, Geneva, Tahoma, sans-serif; font-size: medium">d'ordinateurs...</span>
+            <br />
+            <span style="font-family: Verdana, Geneva, Tahoma, sans-serif; font-size: medium; font-style: italic">-
+                Bonjour, vous êtes nouveau ici ?</span>
+            <br />
+            <input size="65" />
+            <input type="submit" name="Submit" value="Repondre" style="width:100px; height: 19px;" ; />
+		</div>
 </body>
 </html>
