@@ -2,69 +2,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Mendeleïev's Table</title>
-	<style>
-		body {
-			margin: 0;
-			background-color: palegoldenrod;
-		}
-		#title {
-			text-align: center;
-			vertical-align: center;
-			font-size: 250%;
-			padding-top: 20;
-		}
-		#grid {
-			display: grid;
-			max-width: 100%;
-			max-height: 100%;
-			padding: 50px;
-			grid-template-columns: repeat(18, 1fr);
-			grid-template-rows: repeat(9, 1fr);
-			grid-gap: 10px;
-		}
-		#portrait {
-			background-image: url('https://raw.githubusercontent.com/hauh/piscine-php/master/mendeleiev.jpg');
-			grid-area: 1 / 6 / 4 / 10;
-			background-size: cover;
-			background-position: center;
-			border-style: solid;
-			border-color: black;
-		}
-		.box {
-			display: grid;
-			max-width: 100%;
-			grid-template-columns: 1fr;
-			grid-template-rows: repeat(3, 1fr);
-			grid-gap: 1px;
-			border-style: solid;
-			border-color: black;
-		}
-		.weight {
-			text-align: right;
-			padding-right: 2px;
-			font-size: 10;
-		}
-		.name {
-			text-align: center;
-			font-weight: bold;
-			font-size: 25;
-		}
-		.number {
-			display: flex;
-			align-items: flex-end;
-			padding-left: 2px;
-			font-size: 10;
-		}
-		.elem_alkali_metals {background-color: burlywood}
-		.elem_alkaline_earth {background-color: darkkhaki}
-		.elem_transition_metals {background-color: indianred}
-		.elem_other_metals {background-color: pink}
-		.elem_other_nonmetals {background-color: plum}
-		.elem_halogens {background-color: aquamarine}
-		.elem_noble_gases {background-color: silver}
-		.elem_rare_earth {background-color: teal}
-		.elem_actinoid {background-color: mediumpurple}
-	</style>
+	<link href="responsive.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 	<div id=title>Dimitri Mendeleïev complete periodic table of the elements</div><br /><hr>
