@@ -1,1 +1,1 @@
-CREATE DATABASE db_smorty;
+CREATE DATABASE IF NOT EXISTS db_smorty;

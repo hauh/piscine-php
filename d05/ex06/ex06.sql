@@ -1,4 +1,4 @@
-SELECT `title`, `summary`
+SELECT title, summary
 FROM film
-WHERE `summary` LIKE '%vincent%'
-ORDER BY `id_film` ASC;
+WHERE summary LIKE '%vincent%'
+ORDER BY id_film ASC;
