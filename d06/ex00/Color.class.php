@@ -52,12 +52,16 @@ class Color
 		return (new Color(array('red' => $r, 'green' => $g, 'blue' => $b)));
 	}
 	
-	public static function	doc() {
-		return(file_get_contents("Color.doc.txt"));
+	public static function	doc()
+	{
+		if (file_exists("Color.doc.txt"))
+			return(file_get_contents("Color.doc.txt"));
 	}
 
-	public function	__toString() {
-		return(sprintf("Color( red: % 3d, green: % 3d, blue: % 3d )", $this->red, $this->green, $this->blue));
+	public function	__toString()
+	{
+		return(sprintf("Color( red: % 3d, green: % 3d, blue: % 3d )",
+							$this->red, $this->green, $this->blue));
 	}
 
 	public function	__destruct()
