@@ -1,0 +1,13 @@
+
+<- Vertex ----------------------------------------------------------------------
+The Vertex class handles verteces.
+
+An instance can be contructed from XYZ values:
+new Vertex(array('x' => 11.1, 'y' => 12.2, 'z' => 13.3));
+
+In addition it can also be constrcuted with 'w' component, and a color of Color class.
+If not specified, 'w' is defaulted at 1.0, and Color is white (0xFFFFFF);
+
+The properties are private. Class provides setters (setX(), setY(), setZ(), setW(), setColor()),
+and getters (getX(), getY(), getZ(), getW(), getColor()).
+---------------------------------------------------------------------- Vertex ->
