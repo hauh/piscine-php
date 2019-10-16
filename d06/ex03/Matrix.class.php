@@ -15,9 +15,9 @@ class Matrix
 	const	PROJECTION	= "PROJECTION";
 
 	public	$matrix	= [	[1.0, 0.0, 0.0, 0.0],
-							[0.0, 1.0, 0.0, 0.0],
-							[0.0, 0.0, 1.0, 0.0],
-							[0.0, 0.0, 0.0, 1.0] ];
+						[0.0, 1.0, 0.0, 0.0],
+						[0.0, 0.0, 1.0, 0.0],
+						[0.0, 0.0, 0.0, 1.0] ];
 	private $_preset	= IDENTITY;
 	private $_scale		= 1.0;
 	private $_angle		= 0.0;
