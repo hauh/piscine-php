@@ -49,24 +49,24 @@ class Vertex
 		return ($this->_c);
 	}
 
-	public function	setX(float $new_x) {
-		$thix->_x = $new_x;
+	public function	setX($new_x) {
+		$this->_x = $new_x;
 	}
 
-	public function	setY(float $new_y) {
-		$thix->_y = $new_y;
+	public function	setY($new_y) {
+		$this->_y = $new_y;
 	}
 
-	public function	setZ(float $new_z) {
-		$thix->_z = $new_z;
+	public function	setZ($new_z) {
+		$this->_z = $new_z;
 	}
 
-	public function	setW(float $new_w) {
-		$thix->_w = $new_w;
+	public function	setW($new_w) {
+		$this->_w = $new_w;
 	}
 
 	public function	setColor(Color $new_c) {
-		$thix->_c = $new_c;
+		$this->_c = $new_c;
 	}
 
 	public static function	doc()

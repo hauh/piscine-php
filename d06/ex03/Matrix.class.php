@@ -14,7 +14,7 @@ class Matrix
 	const	TRANSLATION	= "TRANSLATION";
 	const	PROJECTION	= "PROJECTION";
 
-	public	$_matrix	= [	[1.0, 0.0, 0.0, 0.0],
+	public	$matrix	= [	[1.0, 0.0, 0.0, 0.0],
 							[0.0, 1.0, 0.0, 0.0],
 							[0.0, 0.0, 1.0, 0.0],
 							[0.0, 0.0, 0.0, 1.0] ];
@@ -70,41 +70,76 @@ class Matrix
 
 	private function	createScaleMatrix()
 	{
-		$this->_matrix[0][0] = $this->_scale;
-		$this->_matrix[1][1] = $this->_scale;
-		$this->_matrix[2][2] = $this->_scale;
+		$this->matrix[0][0] = $this->_scale;
+		$this->matrix[1][1] = $this->_scale;
+		$this->matrix[2][2] = $this->_scale;
 	}
 	
 	private function	createRotationMatrix()
 	{
-		$this->_matrix[0][0] = $this->_preset == RX ? 1.0 : cos($this->_angle);
-		$this->_matrix[0][1] = $this->_preset == RZ ? -sin($this->_angle) : 0.0;
-		$this->_matrix[0][2] = $this->_preset == RY ? sin($this->_angle) : 0.0;
+		$this->matrix[0][0] = $this->_preset == RX ? 1.0 : cos($this->_angle);
+		$this->matrix[0][1] = $this->_preset == RZ ? -sin($this->_angle) : 0.0;
+		$this->matrix[0][2] = $this->_preset == RY ? sin($this->_angle) : 0.0;
 		
-		$this->_matrix[1][0] = $this->_preset == RZ ? sin($this->_angle) : 0.0;
-		$this->_matrix[1][1] = $this->_preset == RY ? 1.0 : cos($this->_angle);
-		$this->_matrix[1][2] = $this->_preset == RX ? -sin($this->_angle) : 0.0;
+		$this->matrix[1][0] = $this->_preset == RZ ? sin($this->_angle) : 0.0;
+		$this->matrix[1][1] = $this->_preset == RY ? 1.0 : cos($this->_angle);
+		$this->matrix[1][2] = $this->_preset == RX ? -sin($this->_angle) : 0.0;
 		
-		$this->_matrix[2][0] = $this->_preset == RY ? -sin($this->_angle) : 0.0;
-		$this->_matrix[2][1] = $this->_preset == RX ? sin($this->_angle) : 0.0;
-		$this->_matrix[2][2] = $this->_preset == RZ ? 1.0 : cos($this->_angle);
+		$this->matrix[2][0] = $this->_preset == RY ? -sin($this->_angle) : 0.0;
+		$this->matrix[2][1] = $this->_preset == RX ? sin($this->_angle) : 0.0;
+		$this->matrix[2][2] = $this->_preset == RZ ? 1.0 : cos($this->_angle);
 	}
 
 	private function	createTranslationMatrix()
 	{
-		$this->_matrix[0][3] = $this->_vtc->getX();
-		$this->_matrix[1][3] = $this->_vtc->getY();
-		$this->_matrix[2][3] = $this->_vtc->getZ();
+		$this->matrix[0][3] = $this->_vtc->getX();
+		$this->matrix[1][3] = $this->_vtc->getY();
+		$this->matrix[2][3] = $this->_vtc->getZ();
 	}
 
 	private function	createProjectionMatrix()
 	{
-		$this->_matrix[0][0] = 1 / ($this->_ratio * tan(deg2rad($this->_fov) / 2));
-		$this->_matrix[1][1] = 1 / tan(deg2rad($this->_fov) / 2);
-		$this->_matrix[2][2] = ($this->_far + $this->_near) / ($this->_far - $this->_near) * -1;
-		$this->_matrix[2][3] = (2 * $this->_far * $this->_near) / ($this->_far - $this->_near) * -1;
-		$this->_matrix[3][2] = -1.0;
-		$this->_matrix[3][3] = 0.0;
+		$this->matrix[0][0] = 1 / ($this->_ratio * tan(deg2rad($this->_fov) / 2));
+		$this->matrix[1][1] = 1 / tan(deg2rad($this->_fov) / 2);
+		$this->matrix[2][2] = ($this->_far + $this->_near) / ($this->_far - $this->_near) * -1;
+		$this->matrix[2][3] = (2 * $this->_far * $this->_near) / ($this->_far - $this->_near) * -1;
+		$this->matrix[3][2] = -1.0;
+		$this->matrix[3][3] = 0.0;
+	}
+
+	public function		mult(Matrix $rhs)
+	{
+		$new = new Matrix(array('preset' => IDENTITY));
+		for ($i = 0; $i < 4; $i++)
+			for ($j = 0; $j < 4; $j++)
+			{
+				$new->matrix[$i][$j] = 0;
+				for ($k = 0; $k < 4; $k++)
+					$new->matrix[$i][$j] += $this->matrix[$i][$k] * $rhs->matrix[$k][$j];
+			}
+		return ($new);
+	}
+
+	public function		 transformVertex(Vertex $vtx)
+	{
+		$new = new Vertex(array('x' => 0, 'y' => 0, 'z' => 0));
+		$new->setX($this->matrix[0][0] * $vtx->getX()
+					+ $this->matrix[0][1] * $vtx->getY()
+					+ $this->matrix[0][2] * $vtx->getZ()
+					+ $this->matrix[0][3] * $vtx->getW());
+		$new->setY($this->matrix[1][0] * $vtx->getX()
+					+ $this->matrix[1][1] * $vtx->getY()
+					+ $this->matrix[1][2] * $vtx->getZ()
+					+ $this->matrix[1][3] * $vtx->getW());
+		$new->setZ($this->matrix[2][0] * $vtx->getX()
+					+ $this->matrix[2][1] * $vtx->getY()
+					+ $this->matrix[2][2] * $vtx->getZ()
+					+ $this->matrix[2][3] * $vtx->getW());
+		$new->setW($this->matrix[3][0] * $vtx->getX()
+					+ $this->matrix[3][1] * $vtx->getY()
+					+ $this->matrix[3][2] * $vtx->getZ()
+					+ $this->matrix[3][3] * $vtx->getW());
+		return ($new);
 	}
 
 	public static function	doc()
@@ -122,10 +157,10 @@ class Matrix
 			"y | %.2f | %.2f | %.2f | %.2f\n".
 			"z | %.2f | %.2f | %.2f | %.2f\n".
 			"w | %.2f | %.2f | %.2f | %.2f\n",
-			$this->_matrix[0][0], $this->_matrix[0][1], $this->_matrix[0][2], $this->_matrix[0][3],
-			$this->_matrix[1][0], $this->_matrix[1][1], $this->_matrix[1][2], $this->_matrix[1][3],
-			$this->_matrix[2][0], $this->_matrix[2][1], $this->_matrix[2][2], $this->_matrix[2][3],
-			$this->_matrix[3][0], $this->_matrix[3][1], $this->_matrix[3][2], $this->_matrix[3][3]));
+			$this->matrix[0][0], $this->matrix[0][1], $this->matrix[0][2], $this->matrix[0][3],
+			$this->matrix[1][0], $this->matrix[1][1], $this->matrix[1][2], $this->matrix[1][3],
+			$this->matrix[2][0], $this->matrix[2][1], $this->matrix[2][2], $this->matrix[2][3],
+			$this->matrix[3][0], $this->matrix[3][1], $this->matrix[3][2], $this->matrix[3][3]));
 	}
 
 	public function		__destruct()
