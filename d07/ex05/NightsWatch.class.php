@@ -10,7 +10,7 @@ class NightsWatch
 	public function fight()
 	{
 		foreach ($this->_members as $fighter)
-			if (method_exists($fighter, "fight"))
+			if ($fighter instanceof IFighter)
 				$fighter->fight();
 	}
 }

@@ -1,15 +1,14 @@
 <?php
 class Targaryen
 {
-	protected function resistsFire() {
-		return False;
+	protected function	resistsFire() {
+		return (False);
 	}
 
-	public function getBurned() {
-		if ($this->resistsFire())
-			return "emerges naked but unharmed";
-		else
-			return "burns alive";
+	public function		getBurned() {
+		return ($this->resistsFire() ?
+					"emerges naked but unharmed" :
+					"burns alive");
 	}
 }
 ?>
