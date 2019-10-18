@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Balloon</title>
+	<style>
+		body {background-color: palegoldenrod}
+		#balloon {
+			display: flex;
+			position: fixed;
+			top: 50%;
+			left: 50%;
+			width: 200px;
+			height: 200px;
+			background-color: red;
+			border-radius: 50%;
+			transform: translate(-50%, -50%);
+		}
+	</style>
+	<script>
+		var colors = ["red", "green", "blue"];
+		var current_color = 0;
+		var	size = 200;
+
+		function inflate()
+		{
+			var bal = document.getElementById("balloon");
+
+			if ((size += 10) > 420)
+				size = 200;
+			bal.style.width = size + "px";
+			bal.style.height = size + "px";
+			if (++current_color > 2)
+				current_color = 0;
+			bal.style.backgroundColor = colors[current_color];
+		}
+		function deflate()
+		{
+			var bal = document.getElementById("balloon");
+
+			if ((size -= 5) < 200)
+				size = 200;
+			bal.style.width = size + "px";
+			bal.style.height = size + "px";
+			if (--current_color < 0)
+				current_color = 2;
+			bal.style.backgroundColor = colors[current_color];
+		}
+	</script>
+</head>
+<body>
+	<div id=balloon onclick="inflate()" onmouseout="deflate()"></div>
+</body>
+</html>
