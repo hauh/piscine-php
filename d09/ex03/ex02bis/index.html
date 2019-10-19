@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>TODO</title>
+	<style>
+		body {background-color: palegoldenrod}
+		#ft_list {
+			display: grid;
+			grid-template-columns: 400px;
+			grid-auto-rows: 50px;
+			position: fixed;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			grid-gap: 20px;
+		}
+		.todo {
+			display: flex;
+			background-color: aquamarine;
+			border: 0.1em solid white;
+			font-size: 250%;
+			align-items: center;
+			justify-content: center;
+		}
+		.totop {
+			pointer-events: none;;
+		}
+		#button {
+			display: flex;
+			border: 0.2em solid white;
+			background-color: greenyellow;
+			font-family:'Roboto', sans-serif;
+			font-weight: 30000;
+			color: black;
+			align-items: center;
+			justify-content: center;
+		}
+		#button:hover {
+			color: black;
+			background-color: yellow;
+		}
+	</style>
+	<script type="text/javascript" src="todo.js"></script>
+</head>
+<body onload="set_todos_from_cookies()" onbeforeunload="save_todos_to_cookies()">
+	<div id =ft_list>
+		<div id=button height="500px" onclick="add_todo(prompt('What to do?', ''))">New</div>
+	</div>
+</body>
+</html>

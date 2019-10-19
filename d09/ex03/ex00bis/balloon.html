@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Balloon</title>
+	<style>
+		body {background-color: palegoldenrod}
+		#balloon {
+			display: flex;
+			position: fixed;
+			top: 50%;
+			left: 50%;
+			width: 200px;
+			height: 200px;
+			background-color: red;
+			border-radius: 50%;
+			transform: translate(-50%, -50%);
+		}
+	</style>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script>
+		var colors = ["red", "green", "blue"];
+		var current_color = 0;
+		var	size = 200;
+		var bal;
+
+		$(document).ready(function()
+		{
+			bal = $('#balloon');
+			bal.click(inflate);
+			bal.mouseleave(deflate);
+		});
+
+		function inflate()
+		{
+			size += size < 420 ? 10 : 200 - size;
+			bal.css('width', size);
+			bal.css('height', size);
+			current_color += current_color < 3 ? 1 : -3;
+			bal.css('backgroundColor', colors[current_color]);
+		}
+		function deflate()
+		{
+			if (size > 200)
+				size -= 5;
+			bal.css('width', size);
+			bal.css('height', size);
+			current_color -= current_color > 0 ? 1 : -2;
+			bal.css('backgroundColor', colors[current_color]);
+		}
+	</script>
+</head>
+<body>
+	<div id=balloon></div>
+</body>
+</html>

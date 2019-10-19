@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Calc</title>
+	<style>
+		body {background-color: palegoldenrod}
+		#calc {
+			display: grid;
+			position: fixed;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			grid-template-columns: 2fr 1fr 2fr;
+			grid-template-rows: 1fr 1fr;
+			grid-gap: 20px;
+		}
+		.input {
+			font-size: 250%;
+			height: 50px;
+			width: 200px;
+			align-self: center;
+			justify-self: center;
+			border-style: solid;
+		}
+		#operator {
+			height: 30px;
+			width: 70px;
+			font-size: 150%;
+			display: flex;
+			align-self: center;
+			justify-self: center;
+			align-items: stretch;
+		}
+		#tryme {
+			display: flex;
+			width: 200px;
+			font-size: 100%;
+			align-self: center;
+			justify-self: center;
+			justify-content: center;
+			align-content: center;
+			grid-column: 1 / 4;
+		}
+	</style>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script>
+		var left;
+		var right;
+		var op;
+		var calc;
+		
+		$(document).ready(function()
+		{
+			left = $('#left');
+			right = $('#right');
+			op = $('#operator');
+			calc = $('#calc');
+			calc.submit(calculate);
+			window.setInterval(reminder, 30000);
+		});
+		
+		
+		function calculate()
+		{
+			var a = Number(left.val());
+			var b = Number(right.val());
+
+			if (!left.val() || !right.val())
+				return ;
+			if (a < 0 || b < 0 || a != left.val() || b != right.val())
+				res = "Error :("
+			else
+				switch (op.val())
+				{
+					case '+':
+						res = a + b;
+						break;
+					case '-':
+						res = a - b;
+						break;
+					case '*':
+						res = a * b;
+						break;
+					case '/':
+						res = b ? a / b : "It’s over 9000!"
+						break;
+					case '%':
+						res = b ? a % b : "It’s over 9000!"
+						break;
+				}
+			console.log(res);
+			alert(res);
+		}
+
+		function reminder() {
+			alert('Please, use me...');
+		}
+	</script>
+</head>
+<body>
+	<form name=calc id=calc>
+		<input class=input id=left type="text" value="">
+		<select id=operator>
+			<option>+</option>
+			<option>-</option>
+			<option>*</option>
+			<option>/</option>
+			<option>%</option>
+		</select>
+		<input class=input id=right type="text" value="">
+		<input id=tryme type="submit" value ="Try me!">
+	</form>
+</body>
+</html>
